@@ -1,39 +1,42 @@
 import React from "react";
-import { Platform } from "react-native";
+import { StatusBar, Platform } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   CardStyleInterpolators,
   createStackNavigator,
+  TransitionSpecs,
 } from "@react-navigation/stack";
 
 import CategoriesScreen from "../screens/CategoriesScreen";
 import MealDetailScreen from "../screens/MealDetailScreen";
 import CategoryMealsScreen from "../screens/CategoryMealsScreen";
+import FavouritesScreen from "../screens/FavouritesScreen";
 
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../components/HeaderButton";
 
 import Colors from "../constants/Colors";
-import FiltersScreen from "../screens/FiltersScreen";
 import HeaderOptions from "../constants/HeaderOptions";
 
-const MealsStack = createStackNavigator();
+const FavouriteStack = createStackNavigator();
 
-const MealsNavigator = (props) => {
+const FavouriteNavigator = (props) => {
   const { navigation, route } = props;
 
   return (
-    <MealsStack.Navigator
+    <FavouriteStack.Navigator
       initialRouteName="CategoriesScreen"
       screenOptions={{
         ...HeaderOptions,
       }}
     >
-      <MealsStack.Screen
-        name="CategoriesScreen"
-        component={CategoriesScreen}
+      <FavouriteStack.Screen
+        name="FavouritesScreen"
+        component={FavouritesScreen}
         options={{
-          headerTitle: "Meal Categories",
+          headerTitle: "Favourite Meals",
           headerLeft: () => (
             <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
               <Item
@@ -47,7 +50,7 @@ const MealsNavigator = (props) => {
           ),
         }}
       />
-      <MealsStack.Screen
+      <FavouriteStack.Screen
         name="MealDetailScreen"
         component={MealDetailScreen}
         options={({ route }) => ({
@@ -66,7 +69,7 @@ const MealsNavigator = (props) => {
           ),
         })}
       />
-      <MealsStack.Screen
+      <FavouriteStack.Screen
         name="CategoryMealsScreen"
         component={CategoryMealsScreen}
         options={({ route }) => ({
@@ -74,8 +77,8 @@ const MealsNavigator = (props) => {
           headerTitle: route.params.title,
         })}
       />
-    </MealsStack.Navigator>
+    </FavouriteStack.Navigator>
   );
 };
 
-export default MealsNavigator;
+export default FavouriteNavigator;

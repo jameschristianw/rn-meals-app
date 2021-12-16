@@ -41,15 +41,15 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     shadowColor: "black",
     shadowOpacity: 0.25,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 1 },
     shadowRadius: 10,
-    elevation: 3,
+    elevation: 4,
     justifyContent: "flex-end",
     alignItems: "flex-end",
   },
   title: {
     fontFamily: "open-sans-bold",
-    fontSize: 24,
+    fontSize: 18,
     textAlign: "right",
   },
 });

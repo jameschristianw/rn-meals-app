@@ -1,13 +1,17 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { LogBox, StyleSheet, Text, View } from "react-native";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
-import MealsNavigator from "./navigation/MealsNavigator";
+// import MealsNavigator from "./navigation/MealsNavigator";
 import { enableScreens } from "react-native-screens";
+import { NavigationContainer } from "@react-navigation/native";
+
+import MealsTab from "./navigation/MealsTab";
+import Colors from "./constants/Colors";
+import MainDrawer from "./navigation/MainNavigator";
 
 enableScreens();
-
 const fetchFonts = () => {
   return Font.loadAsync({
     "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
@@ -28,7 +32,15 @@ const App = () => {
     );
   }
 
-  return <MealsNavigator />;
+  return (
+    <NavigationContainer>
+      <StatusBar
+        barStyle={Platform.OS === "android" ? "light-content" : "dark-content"}
+        backgroundColor={Colors.primaryColor}
+      />
+      <MainDrawer />
+    </NavigationContainer>
+  );
 };
 
 const styles = StyleSheet.create({});
