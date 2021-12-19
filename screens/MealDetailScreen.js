@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { View, Text, StyleSheet, Button, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { MEALS } from "../data/dummy-data";
 import DefaultText from "../components/DefaultText";
+import { toggleFavourite } from "../store/actions/meals";
 
 const ListItem = (props) => {
   return (
@@ -15,7 +16,19 @@ const ListItem = (props) => {
 const MealDetailScreen = (props) => {
   const { navigation, route } = props;
   const { mealId } = route.params;
-  const selectedMeal = MEALS.find((meal) => meal.id == mealId);
+
+  const availableMeals = useSelector((state) => state.meals.meals);
+
+  const selectedMeal = availableMeals.find((meal) => meal.id == mealId);
+
+  const dispatch = useDispatch();
+  const toggelFavouriteHandler = useCallback(() => {
+    dispatch(toggleFavourite(mealId));
+  }, [dispatch, mealId]);
+
+  useEffect(() => {
+    navigation.setParams({ toggleFav: toggelFavouriteHandler });
+  }, [toggelFavouriteHandler]);
 
   return (
     <ScrollView>

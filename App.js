@@ -11,7 +11,17 @@ import MealsTab from "./navigation/MealsTab";
 import Colors from "./constants/Colors";
 import MainDrawer from "./navigation/MainNavigator";
 
+import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
+import mealsReducer from "./store/reducers/meals";
+
 enableScreens();
+
+const rootReducer = combineReducers({
+  meals: mealsReducer,
+});
+const store = createStore(rootReducer);
+
 const fetchFonts = () => {
   return Font.loadAsync({
     "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
@@ -33,13 +43,17 @@ const App = () => {
   }
 
   return (
-    <NavigationContainer>
-      <StatusBar
-        barStyle={Platform.OS === "android" ? "light-content" : "dark-content"}
-        backgroundColor={Colors.primaryColor}
-      />
-      <MainDrawer />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <StatusBar
+          barStyle={
+            Platform.OS === "android" ? "light-content" : "dark-content"
+          }
+          backgroundColor={Colors.primaryColor}
+        />
+        <MainDrawer />
+      </NavigationContainer>
+    </Provider>
   );
 };
 

@@ -58,9 +58,7 @@ const MealsNavigator = (props) => {
               <Item
                 title="Favourite"
                 iconName="star"
-                onPress={() => {
-                  console.log("favourite");
-                }}
+                onPress={() => route.params.toggleFav()}
               />
             </HeaderButtons>
           ),
