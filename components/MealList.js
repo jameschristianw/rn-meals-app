@@ -26,6 +26,9 @@ const MealList = (props) => {
   return (
     <SafeAreaView style={styles.screen}>
       <FlatList
+        keyExtractor={(item, index) => {
+          return index.toString();
+        }}
         data={props.listData}
         renderItem={renderMealItem}
         contentContainerStyle={{ padding: 8, paddingHorizontal: 16 }}

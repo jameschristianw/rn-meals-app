@@ -40,13 +40,13 @@ const MealDetailScreen = (props) => {
       </View>
       <View style={{ marginHorizontal: 12, marginBottom: 8 }}>
         <Text style={styles.title}>Ingredients</Text>
-        {selectedMeal.ingredients.map((meal) => (
-          <ListItem>{meal}</ListItem>
+        {selectedMeal.ingredients.map((meal, index, array) => (
+          <ListItem key={index.toString()}>{meal}</ListItem>
         ))}
         {/* <Text> list of ingredients</Text> */}
         <Text style={styles.title}>Steps</Text>
-        {selectedMeal.steps.map((meal) => (
-          <ListItem>{meal}</ListItem>
+        {selectedMeal.steps.map((meal, index, array) => (
+          <ListItem key={index.toString()}>{meal}</ListItem>
         ))}
       </View>
     </ScrollView>
